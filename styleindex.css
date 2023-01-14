@@ -54,17 +54,13 @@ h1 {
 }
 
 .contener {
-	width: 80%; 
+	width: 85%; 
 	margin: auto; 
 }
 
 .projet {
-	/* width: 80%; 
-	margin: auto;  ça marche mieux comme ça mais ac*/
-	
-
-	max-width: 400px;
-	margin: 30px 0; 
+	width: 400px;
+	margin: 30px; 
 	display: inline-block;
 	background: white;
 	padding-bottom: 15px; 
@@ -80,7 +76,7 @@ h1 {
 }
 
 .projet img{
-	/* min-width: 400px; */
+	min-width: 400px;
 	height: 266px;
 }
 
@@ -169,12 +165,17 @@ footer{font-weight: bold;
 }
 
 
-@media screen and (min-width: 520px){
+@media screen and (max-width: 520px){
 	.projet{
-		margin: 30px; 
-		/* display: none; */
+		margin: 30px, 0;
+		display: block;
 		width: auto;
-		width: 80%;
+		/* width: 80%; */
 	}
 
+	.projet.picture{
+		height: 266px;
+		display: flex;
+		align-items: center;
+	}
 }
