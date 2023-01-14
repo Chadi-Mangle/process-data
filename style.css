@@ -1,0 +1,66 @@
+/* Variable */
+:root{
+    --color1: rgb(53,53,53)
+}
+
+body {font-family: 'Ubuntu', sans-serif; 
+    font-size: smaller;
+    background-color: #F4F7F6;
+}    
+
+div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+h1{
+    color: var(--color1);
+    text-align: center;
+    margin-bottom: 0;
+}
+
+table{
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    min-width: 400px;
+    border-radius: 5px 5px 0 0;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+table thead tr{
+    background-color: var(--color1);
+    color: white;
+    font-weight: bolder;
+}
+
+table th, table td {
+    padding: 12px 15px;
+}
+
+table tbody tr{
+    border-bottom: 1px solid lightgray;
+}
+
+table tbody tr:hover{
+    color: rgb(47, 147, 187);
+}
+
+table tbody th{
+    font-weight: lighter;
+}
+
+table tbody tr{
+    background-color: #f3f3f3;
+}
+
+table tbody tr:nth-of-type(2n){
+    background-color: white;
+}
+
+
+table tbody tr:last-of-type{
+    border-bottom: 3px solid var(--color1);
+}
