@@ -1,11 +1,11 @@
-import csv #Bibliothèque permetant de manipuler les fichiers csv en Python
+import csv #Bibliothèque permettant de manipuler les fichiers csv en Python
 
 ############### FONCTION UTILITAIRE ###############
 
 
 def fixed()->None: 
     """
-    Règle certains problèmes liées a la bibliothèque csv.
+    Règle certains problèmes liés à  la bibliothèque csv.
     """
     from os import listdir
     csvlist = listdir("./")
@@ -17,34 +17,34 @@ def fixed()->None:
             f.write(text)
             f.close()
 
-#"str:str"  le :str permet de dire que la variable str est une chaine de caractère. 
-# "->float" permet d'exprimer le faites que l'objet retourner est un nombre flotant
+#"str:str"  le :str permet de dire que la variable str est une chaine de caractères. 
+# "->float" permet d'exprimer le fait que l'objet retourné est un nombre flottant
 def str_to_float(str:str)->float:  
     """
-    Convertie une chaine de caractère en nombre flotant.
-    str correspond a chaine de caractère que l'on convertir. 
+    Convertit une chaine de caractères en nombre flottant.
+    str correspond à chaine de caractères que l'on convertit. 
     """
     try: 
-        # Remplace si il ya besion les virgule par des points. 
-        # Ce qui permet de pas avoir de problème lors de la conversion en entier ou floant de n'importe quel base de donnée
+        # Remplace s'il y a besoin les virgules par des points. 
+        # Ce qui permet de ne pas avoir de problème lors de la conversion en entier ou flottant de n'importe quel base de données
         return float(str.replace(",", '.')) 
-    except: #l'erreur que l'on peut avoir c'est d'avoir un nombre entier a la place d'une chaine de caractère. 
-        #Or comme replace() ne marche pas pour les nombre entiers cela crée une erreur
-        #Jj'ai décidé avec cette fonction de convertir quand même les entiers en flotant
+    except: #l'erreur que l'on peut avoir c'est d'avoir un nombre entier à la place d'une chaine de caractères. 
+        #Or comme replace() ne marche pas pour les nombres entiers cela créé une erreur
+        #J'ai décidé avec cette fonction de convertir quand même les entiers en flottant
         return float(str)
 
 
 ############### FONCTION DE CALCUL ###############
 
 
-# "lst_d:list" permet de savoir que lst_d esr une list. 
+# "lst_d:list" permet de savoir que lst_d est une liste. 
 # "key1:str, key2:str" et que key1 et key2 sont des chaines de caractères.
-# ->list permet d'exprimer le faites que l'objet retourner est une liste
+# ->list permet d'exprimer le fait que l'objet retourné est une liste
 def addition(lst_d:list, key1:str, key2:str)->list: 
     """
-    Crée une liste de dictionnaire de l'addition entre deux valeurs des dictionnaires.  
-    lst_d est une liste de dictionnaire.
-    key1 et key2 sont des clé des dictionnaires de la listes.
+    Crée une liste de dictionnaires de l'addition entre deux valeurs des dictionnaires.  
+    lst_d est une liste de dictionnaires.
+    key1 et key2 sont des clés des dictionnaires de la listes.
     """
     list_donnees = []
     for elem in lst_d:
@@ -55,12 +55,12 @@ def addition(lst_d:list, key1:str, key2:str)->list:
 
 def medium(lst_d:list)->list: 
     """
-    Crée une liste de dictionnaire de la moyenne entre toutes les valeurs d'un dictionnaires.
-    lst_d est une liste de dictionnaire.
+    Crée une liste de dictionnaires de la moyenne entre toutes les valeurs d'un dictionnaire.
+    lst_d est une liste de dictionnaires.
     """
     list_donnees = []
     for elem in lst_d: 
-        #converti la liste des nombres en nombres floatant en utilisant la fonction "str_to_float" definie plus haut
+        #convertit la liste des nombres en nombres floattants en utilisant la fonction "str_to_float" definie plus haut
         elem_float = [str_to_float(i) for i in list(elem.values())] 
         dico = {"Moyenne": str(int(sum(list(elem_float))/len(list(elem_float))))} #ce qui permet de faire les calculs 
         list_donnees.append(dico)
@@ -69,10 +69,10 @@ def medium(lst_d:list)->list:
 
 def percentage(lst_d:list, key1:str, key2:str)->list:
     """
-    Crée une liste de dictionnaire du pourcentage entre deux valeurs des dictionnaires.
-    lst_d est une liste de dictionnaire.
-    La valeur assosié à key1 doit être une moyenne.
-    key2 sont des clé des dictionnaires de la liste. 
+    Créé une liste de dictionnaires du pourcentage entre deux valeurs des dictionnaires.
+    lst_d est une liste de dictionnaires.
+    La valeur associée à key1 doit être une moyenne.
+    key2 est une clé des dictionnaires de la liste. 
     """
     list_donnees = []
     for elem in lst_d:
@@ -81,15 +81,15 @@ def percentage(lst_d:list, key1:str, key2:str)->list:
 
     return list_donnees
 
-def rate_of_grow(lst_d:list, key1:str, key2:str)->list: #calcul le taux de croissance
+def rate_of_grow(lst_d:list, key1:str, key2:str)->list: 
     """
-    Crée une liste de dictionnaire du calcul du taux de croissances entre deux valeurs des dictionnaires.
-    lst_d est une liste de dictionnaire.
-    key1 et key2 sont des clé des dictionnaires de la listes.
+    Créé une liste de dictionnaires du calcul du taux de croissance entre deux valeurs des dictionnaires.
+    lst_d est une liste de dictionnaires.
+    key1 et key2 sont des clés des dictionnaires de la liste.
     """
     list_donnees = []
     for elem in lst_d:   
-        try:  #  test si le deuxième element de la liste est égale à 0 car on ne peut pas faire de division par zéro
+        try:  #  test si le deuxième élément de la liste est égal à 0 car on ne peut pas faire de division par zéro
             grow = int((str_to_float(elem[key1]) - str_to_float(elem[key2])))/str_to_float(elem[key2])
         except: 
             grow = 0 
@@ -100,12 +100,12 @@ def rate_of_grow(lst_d:list, key1:str, key2:str)->list: #calcul le taux de crois
 
 def prediction_growing(lst_d:list, key1:str, key2:str)->list: 
     """ 
-    Cree une liste de prediction a partir du taux de croissances (possitioné en key1).
-    lst_d est une liste de dictionnaire.
+    Créé une liste de prédictions à partir du taux de croissance (positionée en key1).
+    lst_d est une liste de dictionnaires.
     """
     list_donnees = []
     for elem in lst_d:
-        #Le taux de croissance etant un pourcentages il faut ajouté 1 avant de faire la mutiplication
+        #Le taux de croissance étant un pourcentages il faut ajouter 1 avant de faire la mutiplication
         grow = 1 + str_to_float(elem[key1]) 
         dico = {"Prediction avec "+key1 : str(int(grow* str_to_float(elem[key2])))} 
         list_donnees.append(dico)
@@ -113,33 +113,33 @@ def prediction_growing(lst_d:list, key1:str, key2:str)->list:
     return list_donnees
 
 
-############### FONCTION SUR LES LISTE, DICTIONNAIRE, CSV ET HTML ###############
+############### FONCTION SUR LES LISTES, DICTIONNAIRES, CSV ET HTML ###############
 
 
 def change_value_list_dictionary(d_to_change, second_d, key1, key2)->None: 
     """
-    Change la valeur associé a "key1" de d_to_change en la cle "key2" du second_d.
+    Change la valeur associée à "key1" de d_to_change en la clé "key2" du second_d.
     d_to_change et second_d sont des listes de dictionnaires.
     """
-     #zip() permet d'avoir une itération parallèle des deux liste de dictionnaire.
-     #Les elemment de d_to_change sont stocké dans elem_to_change et ceux de second_d dans elem
+     #zip() permet d'avoir une itération parallèle des deux listes de dictionnaires.
+     #Les élements de d_to_change sont stockés dans elem_to_change et ceux de second_d dans elem
     for elem_to_change, elem in zip(d_to_change, second_d):
         elem_to_change[key1] = elem[key2]
 
 def add_value_list_dictionary(d_to_change, second_d, key)->None: 
     """
-    Ajoute la valeur associé a "key" de second_d au dictionnaires de d_to_change.
+    Ajoute la valeur associée à "key" de second_d aux dictionnaires de d_to_change.
     d_to_change et second_d sont des listes de dictionnaires.
     """
     for elem_to_add, elem in zip(d_to_change, second_d):
         elem_to_add[key] = elem[key]
 
-def change_logement_value(d): #Fonction utile pour ne pas avoir a recopier plusieurs fois les mêmes lignes de code. 
+def change_logement_value(d): #Fonction utile pour ne pas avoir à recopier plusieurs fois les mêmes lignes de code. 
     """
-    Addition les valeurs d'addition et établisment et logements 
+    Additionne les valeurs d'établissment et logements 
     Remplace la valeur de logement par cette addition
     """
-    # Liste de dictionaire de l'addition des établisments et logements 
+    # Liste de dictionaire de l'addition des établissments et logements 
     logements_etablissement = csv2dict("nb_abonees-fibre_departement_trimestre", ['Logements', 'Ã‰tablissements']) 
     d_logements_etablissement = addition(logements_etablissement, "Logements", "Ã‰tablissements")
 
@@ -148,12 +148,12 @@ def change_logement_value(d): #Fonction utile pour ne pas avoir a recopier plusi
 
 def csv2dict(filename, header)->list:
     """
-    Transforme un csv en dictionaire.  
-    filename est une chaine de caractère du nom de fichier csv. 
-    header est une liste contenant les valeurs qui seront les utilisé comme clé de dictionnaire sortie.
+    Transforme un csv en dictionnaire.  
+    filename est une chaine de caractères du nom de fichier csv. 
+    header est une liste contenant les valeurs qui seront utilisées comme clé du dictionnaire sortie.
     """
     from os.path  import exists
-    #permet savoir le csv existe bien réelement
+    #permet de savoir si le csv existe bien 
     assert exists(filename) != True, f'Le fichier "{filename}"" n\'a pas été trouvé.\nVous pouvez retélécharger les fichiers sources sur ce site : https://chadi-mangle.github.io/process-data/'
     list_donnees_csv = []
     f = open(filename+".csv", "r")
@@ -167,7 +167,7 @@ def csv2dict(filename, header)->list:
 
 def dict2csv(d:list, filename:str)->None:
     """
-    Transforme la liste de dictionaire "d" en un fichier csv.
+    Transforme la liste de dictionaires "d" en un fichier csv.
     """
     csvfile = open(filename+".csv" , "w")
     fieldnames = d[0].keys() #prend les clé du dictionnaires et temps que header
@@ -179,8 +179,8 @@ def dict2csv(d:list, filename:str)->None:
 
 def csv2html(filename:str, h1_and_tbody:str)->None: 
     """
-    Crée un fichier html appartir d'un fichier csv. 
-    h1_and_tbody est une varriable contenant le titre du site et le header du tableau htmls
+    Créé un fichier html à partir d'un fichier csv. 
+    h1_and_tbody est une variable contenant le titre du site et le header du tableau html
     """
     f = open(filename+".html", "w")
     htmlfile = '<!DOCTYPE html><html lang="fr-FR"><head><meta charset="utf-8"><title>SAE 15</title><link rel="stylesheet" href="style.css"></head><body>'+ h1_and_tbody 
@@ -192,7 +192,7 @@ def csv2html(filename:str, h1_and_tbody:str)->None:
         break
 
     for row in csvreader: #
-        if row[0] == first_value: #premet de ne pas avoir ces valeurs ecrit dans les tableaux
+        if row[0] == first_value: #permet de ne pas avoir ces valeurs écrites dans les tableaux
             pass
         else:
             htmlfile += "<tr>" 
@@ -209,9 +209,9 @@ def csv2html(filename:str, h1_and_tbody:str)->None:
 
 def nb_hab_avec_fibre_departements_annees():
     """
-    Cree le csv nb_hab_avec_fibre_departements_annees
+    Créé le csv nb_hab_avec_fibre_departements_annees
     """
-    #Creéation d'une liste de dictionaire a partir du csv
+    #Création d'une liste de dictionaires à partir du csv
     header = ['Code dÃ©partement', 'Nom dÃ©partement', 'Logements', 'T4 2017', 'T3 2018', 'T3 2019', 'T3 2020', 'T3 2021', 'T3 2022']
     d= csv2dict("nb_abonees-fibre_departement_trimestre", header)
 
@@ -225,11 +225,11 @@ def moy_fibre_departement_annees():
     """
     Cree le csv moy_fibre_departement_annees.
     """
-    #Creéation d'une liste de dictionaire a partir du csv
+    #Creéation d'une liste de dictionaires a partir du csv
     header = ['Code dÃ©partement', 'Nom dÃ©partement', 'Logements']
     d= csv2dict("nb_abonees-fibre_departement_trimestre", header)
 
-    # Creation du dictionaires pour le calcul de la moyenne
+    # Création du dictionaire pour le calcul de la moyenne
     annees_header = ['T4 2017', 'T3 2018', 'T3 2019', 'T3 2020', 'T3 2021', 'T3 2022']
     med_annees= csv2dict("nb_abonees-fibre_departement_trimestre", annees_header)
 
@@ -245,13 +245,13 @@ def moy_fibre_departement_annees():
 
 def percentage_fibre_departement_annees(): 
     """
-    Cree le csv percentage_fibre_departement_annees.
+    Créé le csv percentage_fibre_departement_annees.
     """
-    #Creéation d'une liste de dictionaire a partir du csv
+    #Création d'une liste de dictionaires a partir du csv
     header = ['Code dÃ©partement', 'Nom dÃ©partement', 'Logements']
     d= csv2dict("nb_abonees-fibre_departement_trimestre", header)
 
-    # Cre&tion du dictionaires pour le calcul de la moyenne
+    #Création du dictionaire pour le calcul de la moyenne
     annees_header = ['T4 2017', 'T3 2018', 'T3 2019', 'T3 2020', 'T3 2021', 'T3 2022']
     med_annees= csv2dict("nb_abonees-fibre_departement_trimestre", annees_header)
 
@@ -271,9 +271,9 @@ def percentage_fibre_departement_annees():
 
 def prediction_fibre_departement(): 
     """
-    Cree le csv prediction_fibre_departement.
+    Créé le csv prediction_fibre_departement.
     """
-    #Creéation d'une liste de dictionaire a partir du csv
+    #Création d'une liste de dictionaires à partir du csv
     header = ['Code dÃ©partement', 'Nom dÃ©partement', 'Logements', 'T4 2017', 'T3 2018', 'T3 2019', 'T3 2020', 'T3 2021', 'T3 2022']
     d= csv2dict("nb_abonees-fibre_departement_trimestre", header)
     change_logement_value(d)
@@ -282,7 +282,7 @@ def prediction_fibre_departement():
     d_grow = rate_of_grow(d,'T3 2022', 'T3 2021')
     add_value_list_dictionary(d, d_grow, 'Taux de croissance entre T3 2022 et T3 2021')
     
-    #Fait les prediction pour 2023 en mutipliant le taux de croissances avec les valeurs de 2022
+    #Fait les prédictions pour 2023 en mutipliant le taux de croissance avec les valeurs de 2022
     d_2023_prediction = prediction_growing(d, 'Taux de croissance entre T3 2022 et T3 2021', 'T3 2022')
     change_value_list_dictionary(d, d_2023_prediction,'Taux de croissance entre T3 2022 et T3 2021', 'Prediction avec Taux de croissance entre T3 2022 et T3 2021')
 
@@ -297,4 +297,4 @@ if __name__ == "__main__":
     moy_fibre_departement_annees()
     percentage_fibre_departement_annees()
     prediction_fibre_departement()
-    print("Tous les fichiers ont bien été généré")
+    print("Tous les fichiers ont bien été générés")
